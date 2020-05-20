@@ -11,7 +11,7 @@
       $rootScope.currentUser = {
         token: '1_cP4UHYapB2CSjhdPCN6LPQ',
         name: null,
-        id: null
+        id: 1
       };
       
       $scope.name = null;

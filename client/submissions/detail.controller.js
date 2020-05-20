@@ -65,7 +65,7 @@
                 var body = JSON.stringify({
                     content: $scope.new_comment
                 });
-                $http.post($rootScope.baseUrl + "/comments?user_id=4&submission_id="+id_submission, body, {headers: {'token': $rootScope.currentUser.token}})
+                $http.post($rootScope.baseUrl + "/comments/"+id_submission, body, {headers: {'token': $rootScope.currentUser.token}})
                 .then(function(response) {
                     $route.reload();
                 });

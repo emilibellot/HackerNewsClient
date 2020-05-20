@@ -1,22 +1,14 @@
 (function() {
     angular.module('HackerNews')
-    .controller("submissionCtrl", SubmissionCtrl);
+    .controller("profileCtrl", AskCtrl);
     
-    SubmissionCtrl.$inject = ['$scope', '$http', '$rootScope','$mdDialog', '$location'];
+    AskCtrl.$inject = ['$scope', '$http', '$rootScope','$mdDialog', '$location'];
     
-    function SubmissionCtrl($scope, $http, $rootScope, $mdDialog, $location) {
-        
-        console.log("Arrivo");
-        
-        $http.get($rootScope.baseUrl + "/submissions")
+    function AskCtrl($scope, $http, $rootScope, $mdDialog, $location) {
+        $http.get($rootScope.baseUrl + "/user")
         .then(function(response) {
-            $scope.submissions = response.data;   
+            $scope.user = response.data;
         });
-        
-        //$http.get($rootScope.baseUrl + "/votes?type=contributions", {headers: {'token': $rootScope.currentUser.token}})
-        //.then(function(response) {
-        //     $scope.votes = response.data;   
-        //});
         
         $scope.showPrompt = function(ev, id_submission) {
             var confirm = $mdDialog.prompt()
@@ -28,7 +20,6 @@
               .cancel('Cancel');
         
             $mdDialog.show(confirm).then(function(result) {
-                console.log(result);
                 if(result==null){
                     alert("Content is empty");
                 }
@@ -36,7 +27,7 @@
                     var body = JSON.stringify({
             			"content": result
         		    });
-                    $http.post($rootScope.baseUrl + "/comments/"+id_submission,body, {headers: {'token': $rootScope.currentUser.token}})
+                    $http.post($rootScope.baseUrl + "/comments?user_id=4&submission_id="+id_submission,body, {headers: {'token': $rootScope.currentUser.token}})
                     .then(function(response) {
                         localStorage.setItem("id_submission", id_submission);
                         $location.path('/submissions/'+ id_submission);
@@ -45,7 +36,7 @@
             }, function() {});
         };
         
-        $scope.ShowSubmission = function(id){
+        $scope.ShowUser = function(id){
             localStorage.setItem("id_submission", id);
             $location.path('/submissions/'+id);
         };
@@ -63,6 +54,5 @@
                 $mdDialog.hide(answer);
             };
         }
-        
     }
 })();
