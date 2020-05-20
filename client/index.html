@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Hacker News</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/js/angular-material/angular-material.min.css"/>
+    
+    <script src="/js/angular/angular.min.js"></script>
+    <script src="/js/angular-animate/angular-animate.min.js"></script>
+  	<script src="/js/angular-aria/angular-aria.min.js"></script>
+  	<script src="/js/angular-material/angular-material.min.js"></script>
+  	<script src="/js/angular-messages/angular-messages.min.js"></script>
+  	<script src="/js/angular-route/angular-route.min.js"></script>
+  	<script src="/js/angular-google-plus/dist/angular-google-plus.min.js"></script>
+  	<script src="/config.js"></script>
+  	<script src="/main.controller.js"></script>
+  	<script src="/submissions/submissions.controller.js"></script> 
+  	<script src="/submissions/newest.controller.js"></script>
+  	<script src="/submissions/ask.controller.js"></script>
+  	<script src="/submissions/detail.controller.js"></script>
+  	<script src="/submissions/submit.controller.js"></script>
+  	<script src="/submissions/reply.controller.js"></script>
+  	<script src="/submissions/threads.controller.js"></script>
+  </head>
+  <body ng-app="HackerNews">
+  <div layout="row" layout-align="center none">
+    <div flex="75">  
+      <div ng-include="'header.html'" md-colors="{background: 'hacker-primary'}" layout-align="space-between"></div>
+      <div ng-view md-colors="{background: 'hacker-background'}"></div>
+    </div>
+  </div>
+  </body>
+</html>

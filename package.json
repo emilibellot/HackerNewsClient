@@ -1,0 +1,13 @@
+{
+  "name": "Hacker-News",
+  "version": "0.0.0",
+  "description": "AngularJS example of Hacker News blog web",
+  "main": "server.js",
+  "repository": "",
+  "author": "David Aleu, Jordi Guiu, Eduard Maura, Arnau Orriols",
+  "dependencies": {
+    "async": "~0.2.8",
+    "express": "~3.2.4",
+    "socket.io": "~0.9.14"
+  }
+}
