@@ -13,7 +13,7 @@
             $scope.submission = response.data;   
         });
         
-        $http.get($rootScope.baseUrl + "/comments?submission_id="+localStorage.getItem("id_submission"), {headers: {'token': $rootScope.currentUser.token}})
+        $http.get($rootScope.baseUrl + "/comments/submission/"+localStorage.getItem("id_submission"), {headers: {'token': $rootScope.currentUser.token}})
         .then(function(response) {
             $scope.comments = response.data;   
         });

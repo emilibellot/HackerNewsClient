@@ -7,7 +7,7 @@
     
     function MainCtrl($scope,$http, $rootScope, $location) {
        // Global variables
-      $rootScope.baseUrl = 'https://fast-caverns-68683.herokuapp.com/api';
+      $rootScope.baseUrl = 'https://pacific-ravine-23752.herokuapp.com/api';
       $rootScope.currentUser = {
         token: '1_cP4UHYapB2CSjhdPCN6LPQ',
         name: null,

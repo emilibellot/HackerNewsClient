@@ -2,10 +2,10 @@
     <div layout="row" layout-align="center center">
         <div class="md-3-line" flex="95">
         <h3>{{ submission.title }}</h3>
-        <a ng-if="isUrl(submission.url)" ng-href="{{ submission.url }}">{{ submission.url }}</a>
+        <a ng-if="isUrl(submission.url)" ng-href="{{ submission.url }}">{{ "submission.url" }}</a>
         <h4 ng-if="!isUrl(submission.content)">{{ submission.content }}</h4>
         <p>{{ submission.points + ' points by ' + 
-            submission.author_id + ' on ' + 
+            submission.author_name + ' on ' + 
               (submission.timestamp | date:'dd/MM/yyyy HH:mm') + submission.comments.length }}
         </p> 
         </div>
@@ -28,7 +28,7 @@
         <div class="md-list-item-text" layout="column">
             <h4 ng-ref="{{ comment.content }}">{{ comment.content }}</h4>
             <p>{{ comment.points + ' points by ' + 
-                  comment.user.more_info.name + ' on ' + 
+                  comment.author_name + ' on ' + 
                   (comment.timestamp | date:'dd/MM/yyyy HH:mm') + ' | ' +
                   comment.replies.length + ' replies' }}</p> 
         </div>

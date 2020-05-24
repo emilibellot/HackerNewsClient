@@ -36,11 +36,7 @@
                     var body = JSON.stringify({
             			"content": result
         		    });
-                    $http.post($rootScope.baseUrl + "/comments/"+id_submission,body, {headers: {'token': $rootScope.currentUser.token}})
-                    .then(function(response) {
-                        localStorage.setItem("id_submission", id_submission);
-                        $location.path('/submissions/'+ id_submission);
-                    });
+                    
                 }
             }, function() {});
         };

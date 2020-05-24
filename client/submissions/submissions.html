@@ -2,9 +2,13 @@
     <md-list-item class="md-3-line" ng-repeat="submission in submissions" ng-click="ShowSubmission(submission.id)">
         <div class="md-list-item-text" layout="column">
             <h3>{{ submission.title }}</h3>
-            <h4>{{ submission.content }}</h4>
+            {{if (submission.tipo == "url")}}
+                <h4>{{ submission.url }}</h4>
+            {{else}}
+                <h4>{{ submission.content }}</h4>
+            {{end}}
             <p>{{ submission.points + ' points by ' + 
-                submission.author_id + ' on ' + 
+                submission.author_name + ' on ' + 
                   (submission.timestamp | date:'dd/MM/yyyy HH:mm') + ' | ' +
                   submission.comments.length + ' comments' }}</p> 
         </div>
