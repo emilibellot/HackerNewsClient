@@ -11,7 +11,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "postinstall": "ng build --aot -prod"
+    "postinstall": "ng build --prod"
   },
   "dependencies": {
     "-": "0.0.1",
