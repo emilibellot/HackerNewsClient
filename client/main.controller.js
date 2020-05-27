@@ -9,9 +9,9 @@
        // Global variables
       $rootScope.baseUrl = 'https://pacific-ravine-23752.herokuapp.com/api';
       $rootScope.currentUser = {
-        token: '1_cP4UHYapB2CSjhdPCN6LPQ',
+        token: null,
         name: null,
-        id: 1
+        id: null
       };
       
       $scope.name = null;
@@ -25,7 +25,12 @@
       };
       
       $scope.Threads = function() {
-        $location.path('/threads');
+        if ($rootScope.currentUser.id != null){
+          $location.path('/threads');
+        }
+        else{
+          $location.path('/login');
+        }
       };
       
       $scope.Ask = function() {
@@ -37,7 +42,20 @@
       };
       
       $scope.Profile = function() {
-        $location.path('/profile');
+        if ($rootScope.currentUser.id != null){
+          $location.path('/profile');
+        }
+        else{
+          $location.path('/login');
+        }
+      };
+
+      $scope.Comments = function() {
+        $location.path('/comments');
+      };
+     
+      $scope.Login = function() {
+        $location.path('/login');
       };
     }
 })();

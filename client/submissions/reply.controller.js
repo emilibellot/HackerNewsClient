@@ -8,21 +8,16 @@
         
         $scope.new_comment = '';
  
-        $http.get($rootScope.baseUrl + "/comments/"+localStorage.getItem("id_comment"), {headers: {'token': $rootScope.currentUser.token}})
+        $http.get($rootScope.baseUrl + "/comments/"+localStorage.getItem("id_comment"))
         .then(function(response) {
-            $scope.contribution = response.data;   
+            $scope.comment = response.data;   
         });
         
-        $http.get($rootScope.baseUrl + "/replies?comment_id="+localStorage.getItem("id_comment"), {headers: {'token': $rootScope.currentUser.token}})
+        $http.get($rootScope.baseUrl + "/replies/comment/"+localStorage.getItem("id_comment"))
         .then(function(response) {
-            $scope.comments = response.data;   
+            $scope.replies = response.data;   
         });
-        
-        /*$http.get($rootScope.baseUrl + "/votes?type=replies", {headers: {'token': $rootScope.currentUser.token}})
-        .then(function(response) {
-            $scope.votes = response.data;   
-        });*/
-        
+
         $scope.showPrompt = function(ev, id_comment) {
             var confirm = $mdDialog.prompt()
               .title('Add a reply')
@@ -47,30 +42,37 @@
             return regexp.test(text);
         };
         
-        $scope.addComment = function(id_contribution) {
+        $scope.addReply = function(id_comment) {
             if($scope.new_comment==0){
                 alert("Content is empty");
             }
             else{
                 var body = JSON.stringify({
-        			"content": $scope.new_comment
+        			id: id_comment,
+                    content: $scope.new_comment,
+                    apiKey: $rootScope.currentUser.token
     		    });
-                $http.post($rootScope.baseUrl + "/replies?user_id=4&comment_id="+id_contribution,body, {headers: {'token': $rootScope.currentUser.token}})
-                .then(function(response) {
+                $http.post($rootScope.baseUrl + "/replies/", body)
+                .then(function onSuccess(response) {
                     $route.reload();
+                })
+                .catch(function onError(response) {
+                    $location.path('/login');
                 });
             }
         };
-        
-      /*  $scope.addComment = function(){
+
+        $scope.Vote = function(id) {
+            
             var body = JSON.stringify({
-    			"content": $scope.content_area
-		    });
-            $http.post($rootScope.baseUrl + "/comments?user_id=4?contribution_id="+localStorage.getItem("id_contribution"),body, {headers: {'token': $rootScope.currentUser.token}})
-            .then(function(response) {
-                $scope.contribution = response.data;   
-            });
-        } */
+                apiKey: $rootScope.currentUser.token
+            })
+
+            $http.put($rootScope.baseUrl + "/replies/" + id + "/vote/", body)
+                    .then(function(response) {
+                        $route.apply();
+                    });
+        };
 
         function DialogController($scope, $mdDialog) {
             $scope.hide = function() {

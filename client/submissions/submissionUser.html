@@ -1,4 +1,4 @@
-<md-list ng-controller="newestCtrl" ng-cloak>
+<md-list ng-controller="submissionUserCtrl" ng-cloak>
     <md-list-item class="md-3-line" ng-repeat="submission in submissions" ng-click="ShowSubmission(submission.id)">
         <div class="md-list-item-text" layout="column">
             <h2>{{ submission.title }}</h2>
@@ -7,8 +7,11 @@
             {{else}}
                 <h4>{{ submission.content }}</h4>
             {{end}}
-            <p>{{  submission.points + ' points by ' + submission.author_name + ' on ' + (submission.timestamp | date:'dd/MM/yyyy HH:mm') + ' | ' + submission.comments.length + ' comments' }}</p> 
+            <p>{{ submission.points + ' points by ' + 
+                submission.author_name + ' on ' + 
+                  (submission.timestamp | date:'dd/MM/yyyy HH:mm') + ' | ' +
+                  submission.comments.length + ' comments' }}</p> 
         </div>
         <md-button md-theme='hacker' class="md-primary" ng-click="Vote(submission.id)">Vote</md-button>
-    </md-list-item>    
+    </md-list-item>       
 </md-list>

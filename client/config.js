@@ -42,6 +42,18 @@
         .when('/comments/:id', {
             templateUrl: 'submissions/reply.html'
         })
+        .when('/comments/', {
+          templateUrl: 'submissions/comments.html'
+        })
+        .when('/submissionUser/', {
+          templateUrl: 'submissions/submissionUser.html'
+        })
+        .when('/profile/', {
+            templateUrl: 'submissions/profile.html'
+        })
+        .when('/login/', {
+            templateUrl: 'submissions/login.html'
+        })
         .otherwise({
             redirectTo: '/'
         });

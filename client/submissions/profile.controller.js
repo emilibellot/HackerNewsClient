@@ -1,13 +1,13 @@
 (function() {
     angular.module('HackerNews')
-    .controller("askCtrl", AskCtrl);
+    .controller("profileCtrl", ProfileCtrl);
     
-    AskCtrl.$inject = ['$scope', '$http', '$rootScope','$mdDialog', '$location'];
+    ProfileCtrl.$inject = ['$scope', '$http', '$rootScope','$mdDialog', '$location'];
     
-    function AskCtrl($scope, $http, $rootScope, $mdDialog, $location) {
-        $http.get($rootScope.baseUrl + "/ask")
+    function ProfileCtrl($scope, $http, $rootScope, $mdDialog, $location) {
+        $http.get($rootScope.baseUrl + "/users/"+$rootScope.currentUser.id)
         .then(function(response) {
-            $scope.submissions = response.data;
+            $scope.user = response.data;
         });
         
         $scope.showPrompt = function(ev, id_submission) {
@@ -36,21 +36,32 @@
             }, function() {});
         };
         
-        $scope.ShowSubmission = function(id){
+        $scope.ShowProfile = function(id){
             localStorage.setItem("id_submission", id);
             $location.path('/submissions/'+id);
         };
 
-        $scope.Vote = function(id) {
+        $scope.Submit = function() {
             
             var body = JSON.stringify({
-                apiKey: $rootScope.currentUser.token
+                apiKey: $rootScope.currentUser.token,
+                about: $scope.input_about
             })
 
-            $http.put($rootScope.baseUrl + "/submissions/" + id + "/vote/", body)
+            console.log("Before");
+            $http.put($rootScope.baseUrl + "/users/" + $rootScope.currentUser.id, body)
                     .then(function(response) {
-                        $route.apply();
+                        $route.reload();
+                        console.log("After");
                     });
+        };
+
+        $scope.ShowSubmissions = function() {
+            $location.path('/submissionUser');
+        };
+
+        $scope.ShowThreads = function() {
+            $location.path('/threads');
         };
 
         function DialogController($scope, $mdDialog) {

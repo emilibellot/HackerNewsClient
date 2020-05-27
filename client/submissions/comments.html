@@ -1,20 +1,20 @@
-<md-list ng-controller="threadCtrl" ng-cloak>
+<md-list flex layout-padding ng-controller="commentsCtrl" ng-cloak>
     <md-list-item class="md-3-line" ng-repeat="thread in comments">
         <div class="md-list-item-text" layout="column">
             <p>{{ 'by ' + thread.author_name + ' | on: ' +
-                thread.submission_id + ' | ' +
+                    thread.submission_id + ' | ' +
                   (thread.timestamp | date:'dd/MM/yyyy HH:mm') }}</p> 
-            <h7>{{ thread.content }}</h7>
+            <h4>{{ thread.content }}</h4>
         </div>
         <md-button md-theme='hacker' class="md-primary" ng-click="VoteComment(thread.id)">Vote</md-button>
     </md-list-item>   
     <md-list-item class="md-3-line" ng-repeat="thread in replies">
         <div class="md-list-item-text" layout="column">
-            <p>{{ 'by ' + thread.author_name + 
-                  (contribution.timestamp | date:'dd/MM/yyyy HH:mm') + ' | on:' +
-                  thread.comment_id }}</p> 
-            <h7>{{ thread.content }}</h7>
+            <p>{{ 'by ' + thread.author_name + ' | on: ' + 
+                    thread.comment_id + ' | ' +
+                  (thread.timestamp | date:'dd/MM/yyyy HH:mm')}}</p> 
+            <h4>{{ thread.content }}</h4>
         </div>
-        <md-button md-theme='hacker' class="md-primary" ng-click="VoteReply(thread.id)">Vote</md-button>
-    </md-list-item>  
+        <md-button md-theme='hacker' class="md-primary" ng-click="VoteReply(thread.id)">Vote</md-button> 
+    </md-list-item> 
 </md-list>

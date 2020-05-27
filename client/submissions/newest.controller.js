@@ -41,6 +41,18 @@
             $location.path('/submissions/'+id);
         };
 
+        $scope.Vote = function(id) {
+            
+            var body = JSON.stringify({
+                apiKey: $rootScope.currentUser.token
+            })
+
+            $http.put($rootScope.baseUrl + "/submissions/" + id + "/vote/", body)
+                    .then(function(response) {
+                        $route.apply();
+                    });
+        };
+
         function DialogController($scope, $mdDialog) {
             $scope.hide = function() {
                 $mdDialog.hide();

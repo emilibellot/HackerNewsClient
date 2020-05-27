@@ -10,7 +10,7 @@
         $scope.new_url_submission = null;
         $scope.new_content_submission = null;
 
-        $scope.addSubmission = function(id_user) {
+        $scope.addSubmission = function() {
 
             var title = $scope.new_title_submission;
             var url = $scope.new_url_submission;
@@ -29,13 +29,16 @@
                         url: $scope.new_url_submission,
                         apiKey: $rootScope.currentUser.token
                     });
-                $http.post($rootScope.baseUrl + "/submissions", body, {headers: {'token': $rootScope.currentUser.token}})
-                .then(function(response){
-                    $location.path('/');
+                $http.post($rootScope.baseUrl + "/submissions", body)
+                .then(function onSuccess(response) {
+                    $location.path('/newest');
+                })
+                .catch(function onError(response) {
+                    $location.path('/login');
                 });
             }
 
-            };
+        };
 
         function dialogGeneral(msg) {
             var confirm = $mdDialog.alert()

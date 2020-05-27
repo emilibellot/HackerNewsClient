@@ -1,0 +1,19 @@
+<md-content flex layout-padding ng-controller="loginCtrl" md-colors="{background: 'hacker-background'}">
+    <md-input-container class="md-block md-primary" md-theme='hacker'>
+        <label>Email</label>
+    </md-input-container>
+
+    <input  class="form-control" ng-model="email">
+
+    <md-input-container class="md-block md-primary" md-theme='hacker'>
+        <label>Password</label>
+    </md-input-container>
+
+    <input  class="form-control" ng-model="password">
+
+    <div layout="row" layout-align="end center">
+        <md-button md-theme='hacker' class="md-primary" ng-click="addSession()">Login</md-button>
+    </div>
+    <md-divider></md-divider>
+
+</md-content>

@@ -1,13 +1,13 @@
 (function() {
     angular.module('HackerNews')
-    .controller("profileCtrl", AskCtrl);
+    .controller("submissionUserCtrl", SubmissionUserCtrl);
     
-    AskCtrl.$inject = ['$scope', '$http', '$rootScope','$mdDialog', '$location'];
+    SubmissionUserCtrl.$inject = ['$scope', '$http', '$rootScope','$mdDialog', '$location'];
     
-    function AskCtrl($scope, $http, $rootScope, $mdDialog, $location) {
-        $http.get($rootScope.baseUrl + "/user")
+    function SubmissionUserCtrl($scope, $http, $rootScope, $mdDialog, $location) {
+        $http.get($rootScope.baseUrl + "/submissions/user/"+$rootScope.currentUser.id)
         .then(function(response) {
-            $scope.user = response.data;
+            $scope.submissions = response.data;
         });
         
         $scope.showPrompt = function(ev, id_submission) {
@@ -36,9 +36,21 @@
             }, function() {});
         };
         
-        $scope.ShowUser = function(id){
+        $scope.ShowSubmission = function(id){
             localStorage.setItem("id_submission", id);
             $location.path('/submissions/'+id);
+        };
+
+        $scope.Vote = function(id) {
+            
+            var body = JSON.stringify({
+                apiKey: $rootScope.currentUser.token
+            })
+
+            $http.put($rootScope.baseUrl + "/submissions/" + id + "/vote/", body)
+                    .then(function(response) {
+                        $route.apply();
+                    });
         };
 
         function DialogController($scope, $mdDialog) {

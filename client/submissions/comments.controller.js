@@ -1,16 +1,16 @@
 (function() {
     angular.module('HackerNews')
-    .controller("threadCtrl", ThreadCtrl);
+    .controller("commentsCtrl", CommnetsCtrl);
     
-    ThreadCtrl.$inject = ['$scope', '$http', '$rootScope','$mdDialog', '$location'];
+    CommnetsCtrl.$inject = ['$scope', '$http', '$rootScope','$mdDialog', '$location'];
     
-    function ThreadCtrl($scope, $http, $rootScope, $mdDialog, $location) {
-        $http.get($rootScope.baseUrl + "/comments/user/"+$rootScope.currentUser.id)
+    function CommnetsCtrl($scope, $http, $rootScope, $mdDialog, $location) {
+        $http.get($rootScope.baseUrl + "/comments/")
         .then(function(response) {
             $scope.comments = response.data;   
         });
         
-        $http.get($rootScope.baseUrl + "/replies/user/"+$rootScope.currentUser.id)
+        $http.get($rootScope.baseUrl + "/replies/")
         .then(function(response) {
             $scope.replies = response.data;   
         });

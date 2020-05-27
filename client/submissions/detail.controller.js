@@ -8,12 +8,12 @@
         
         $scope.new_comment = '';
  
-        $http.get($rootScope.baseUrl + "/submissions/"+localStorage.getItem("id_submission"), {headers: {'token': $rootScope.currentUser.token}})
+        $http.get($rootScope.baseUrl + "/submissions/"+localStorage.getItem("id_submission"))
         .then(function(response) {
             $scope.submission = response.data;   
         });
         
-        $http.get($rootScope.baseUrl + "/comments/submission/"+localStorage.getItem("id_submission"), {headers: {'token': $rootScope.currentUser.token}})
+        $http.get($rootScope.baseUrl + "/comments/submission/"+localStorage.getItem("id_submission"))
         .then(function(response) {
             $scope.comments = response.data;   
         });
@@ -63,18 +63,34 @@
             }
             else {
                 var body = JSON.stringify({
-                    content: $scope.new_comment
+                    id: id_submission,
+                    content: $scope.new_comment,
+                    apiKey: $rootScope.currentUser.token
                 });
-                $http.post($rootScope.baseUrl + "/comments/"+id_submission, body, {headers: {'token': $rootScope.currentUser.token}})
-                .then(function(response) {
+                $http.post($rootScope.baseUrl + "/comments/", body)
+                .then(function onSuccess(response) {
                     $route.reload();
+                })
+                .catch(function onError(response) {
+                    $location.path('/login');
                 });
             }
+        };
+        
+        $scope.Vote = function(id) {
+            
+            var body = JSON.stringify({
+                apiKey: $rootScope.currentUser.token
+            })
+
+            $http.put($rootScope.baseUrl + "/comments/" + id + "/vote/", body)
+                    .then(function(response) {
+                        $route.apply();
+                    });
         };
 
         function DialogController($scope, $mdDialog) {
             $scope.hide = function() {
-                console.log("Hola2");
                 $mdDialog.hide();
             };
 
@@ -83,7 +99,6 @@
             };
 
             $scope.answer = function(answer) {
-                console.log("Hola2");
                 $mdDialog.hide(answer);
             };
         }
