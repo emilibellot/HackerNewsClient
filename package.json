@@ -11,18 +11,29 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "postinstall": "ng build --prod"
+    "heroku-postbuild": "ng build --prod"
   },
   "dependencies": {
     "-": "0.0.1",
     "@angular/cli": "1.4.9",
+    "@angular/common": "^4.2.4",
+    "@angular/compiler": "^4.2.4",
     "@angular/compiler-cli": "^4.4.6",
+    "@angular/core": "^4.2.4",
+    "@angular/forms": "^4.2.4",
+    "@angular/http": "^4.2.4",
+    "@angular/platform-browser": "^4.2.4",
+    "@angular/platform-browser-dynamic": "^4.2.4",
+    "@angular/router": "^4.2.4",
+    "core-js": "^2.4.1",
+    "express": "^4.16.2",
+    "rxjs": "^5.4.2",
+    "typescript": "~2.3.3",
+    "zone.js": "^0.8.14",
     "async": "~0.2.8",
-    "express": "^3.21.2",
     "path": "^0.12.7",
     "save": "^2.4.0",
-    "socket.io": "~0.9.14",
-    "typescript": "~2.3.3"
+    "socket.io": "~0.9.14"
   },
   "engines": {
     "node": "12.16.3",
