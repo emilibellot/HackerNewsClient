@@ -4,10 +4,31 @@
   "description": "AngularJS example of Hacker News blog web",
   "main": "server.js",
   "repository": "",
-  "author": "David Aleu, Jordi Guiu, Eduard Maura, Arnau Orriols",
+  "author": "Emili Bellot, Alex Humet, Alex Brugal i Eric Gonzalez",
+  "scripts": {
+    "ng": "ng",
+    "start": "node server.js",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "postinstall": "ng build --aot -prod"
+  },
   "dependencies": {
+    "-": "0.0.1",
+    "@angular/cli": "1.4.9",
+    "@angular/compiler-cli": "^4.4.6",
     "async": "~0.2.8",
-    "express": "~3.2.4",
-    "socket.io": "~0.9.14"
+    "express": "^3.21.2",
+    "path": "^0.12.7",
+    "save": "^2.4.0",
+    "socket.io": "~0.9.14",
+    "typescript": "~2.3.3"
+  },
+  "engines": {
+    "node": "12.16.3",
+    "npm": "6.14.4"
+  },
+  "devDependencies": {
+    "enhanced-resolve": "^3.3.0"
   }
 }
