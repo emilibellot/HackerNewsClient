@@ -11,7 +11,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "heroku-postbuild": "ng build --prod"
+    "postinstall": "ng build — aot — prod"
   },
   "dependencies": {
     "-": "0.0.1",
