@@ -1,13 +1,29 @@
 {
-  "name": "Hacker-News",
+  "name": "hacker-news",
   "version": "0.0.0",
   "description": "AngularJS example of Hacker News blog web",
   "main": "server.js",
-  "repository": "",
-  "author": "David Aleu, Jordi Guiu, Eduard Maura, Arnau Orriols",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emilibellot/HackerNewsClient.git"
+  },
+  "author": "Emili Bellot, Alex Humet, Alex Brugal i Eric Gonzalez",
   "dependencies": {
     "async": "~0.2.8",
-    "express": "~3.2.4",
-    "socket.io": "~0.9.14"
-  }
+    "ejs": "^2.3.1",
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": "0.12.2"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emilibellot/HackerNewsClient/issues"
+  },
+  "homepage": "https://github.com/emilibellot/HackerNewsClient#readme"
 }
