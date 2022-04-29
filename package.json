@@ -10,7 +10,7 @@
   "author": "Emili Bellot, Alex Humet, Alex Brugal i Eric Gonzalez",
   "dependencies": {
     "angular": "^1.7.9",
-    "async": "~0.2.8",
+    "async": "~2.6.4",
     "ejs": "^2.3.1",
     "express": "^4.17.1",
     "socket.io": "^2.3.0"
