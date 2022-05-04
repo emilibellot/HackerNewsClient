@@ -9,7 +9,7 @@
   },
   "author": "Emili Bellot, Alex Humet, Alex Brugal i Eric Gonzalez",
   "dependencies": {
-    "angular": "^1.7.9",
+    "angular": "^1.8.3",
     "async": "~0.2.8",
     "ejs": "^2.3.1",
     "express": "^4.17.1",
